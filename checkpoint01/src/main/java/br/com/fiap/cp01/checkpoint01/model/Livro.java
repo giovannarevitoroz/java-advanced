@@ -59,6 +59,7 @@ public class Livro {
 
     @NotBlank(message = "O livro precisa ter uma data de lançamento")
     public int getAnoPublicacao() {
+
         return anoPublicacao;
     }
 
