@@ -13,21 +13,21 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-     public Page<Livro> listarLivros(Pageable pageable) {
-         return livroRepository.findAll(pageable);
+    public Page<Livro> listarLivros(Pageable pageable) {
+        return livroRepository.findAll(pageable);
 
-     }
-
-     public Livro buscarPorId(Long id) {
-         return livroRepository.findById(id).orElseThrow(() -> RecursoNaoEncontradoException("Livro não encontrado com Id: ", id));
-
-     }
-
-     public Livro salvar(Livro livro) {
-         return livroRepository.save(livro);
-     }
+    }
 
 
+    public Livro buscarPorId(Long id) {
+        return livroRepository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Livro nao encontrado com Id: " , id));
+    }
 
+    public Livro atualizar(Long id, Livro livroAtualizado) {
+        Livro livro = buscarPorId(id);
+        livro.setTitulo(livroAtualizado.getTitulo());
+
+        return livroRepository.save(livro);
+    }
 
 }
