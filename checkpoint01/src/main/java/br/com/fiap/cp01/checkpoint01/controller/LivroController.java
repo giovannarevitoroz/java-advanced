@@ -35,4 +35,22 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(livroService.salvar(livro));
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<Page<Livro>> buscarPorTitulo(@RequestParam String titulo, Pageable pageable) {
+        return ResponseEntity.ok(livroService.buscarPorTitulo(titulo, pageable));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Livro> atualizar(@PathVariable Long id, @Valid @RequestBody Livro livro) {
+        return ResponseEntity.ok(livroService.atualizar(id, livro));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        livroService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
 }

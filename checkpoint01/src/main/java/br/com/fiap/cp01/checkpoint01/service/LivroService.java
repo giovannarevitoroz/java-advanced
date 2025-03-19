@@ -44,4 +44,9 @@ public class LivroService {
         livroRepository.delete(livro);
     }
 
+    public Page<Livro> buscarPorTitulo(String titulo, Pageable pageable) {
+        return livroRepository.findByTituloContainingIgnoreCase(titulo, pageable);
+    }
+
+
 }

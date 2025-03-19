@@ -2,11 +2,11 @@ package br.com.fiap.cp01.checkpoint01.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @AllArgsConstructor
@@ -21,18 +21,19 @@ public class Livro {
     @NotBlank(message = "O livro deve ter um título")
     private String titulo;
 
-    @NotBlank(message = "O livro precisa ter  um autor")
+    @NotBlank(message = "O livro precisa ter um autor")
     private String autor;
 
-    @NotBlank(message = "O livro precisa ter uma data de lançamento")
+    @NotNull(message = "O livro precisa ter uma data de lançamento")
     private int anoPublicacao;
 
     @NotBlank(message = "O número isbn deve ser preenchido")
+    @Column(unique = true)
     private String isbn;
 
     private boolean disponivel;
 
-
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -41,37 +42,35 @@ public class Livro {
         this.id = id;
     }
 
-    public @NotBlank(message = "O livro deve ter um título") String getTitulo() {
+    public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(@NotBlank(message = "O livro deve ter um título") String titulo) {
+    public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    public @NotBlank(message = "O livro precisa ter  um autor") String getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void setAutor(@NotBlank(message = "O livro precisa ter  um autor") String autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    @NotBlank(message = "O livro precisa ter uma data de lançamento")
     public int getAnoPublicacao() {
-
         return anoPublicacao;
     }
 
-    public void setAnoPublicacao(@NotBlank(message = "O livro precisa ter uma data de lançamento") int anoPublicacao) {
+    public void setAnoPublicacao(int anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
 
-    public @NotBlank(message = "O número isbn deve ser preenchido") String getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(@NotBlank(message = "O número isbn deve ser preenchido") String isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
